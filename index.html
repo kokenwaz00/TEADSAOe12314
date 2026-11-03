@@ -1,342 +1,365 @@
-import React from 'react';
-// Assuming you have Tailwind CSS configured in your project
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatawin Clone - DIG Analysis</title>
+    <!-- Include Tailwind CSS via CDN for immediate styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Customizing Tailwind colors/settings if needed, though we stick to defaults */
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+        /* Specific style for the timeline effect on larger screens */
+        @media (min-width: 768px) {
+            .relative.flex-col.md\:flex-row {
+                min-height: 400px; /* Give height for visual impact */
+            }
+        }
+    </style>
+    <!-- Configure Tailwind to include custom colors similar to the original if necessary -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'fatawin-green': '#10B981', // Emerald/Bright Green
+                        'fatawin-indigo': '#4338CA', // Indigo for contrast
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
 
-// --- Placeholder Components for Reusability ---
+    <!-- ============================================================== -->
+    <!-- 1. HEADER / NAVIGATION BAR -->
+    <!-- ============================================================== -->
+    <header class="sticky top-0 z-50 bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo/Branding -->
+            <div class="flex items-center space-x-2">
+                <!-- NOTE: Replace this placeholder image path with your actual Fatawin Logo -->
+                <img src="https://via.placeholder.com/120x50?text=Fatawin+Logo" alt="Fatawin Logo" class="h-10 w-auto">
+                <span class="text-2xl font-extrabold text-gray-900 hidden sm:block">Fatawin</span>
+            </div>
 
-// Component for the main value proposition cards
-const FeatureCard = ({ icon, title, description }) => (
-  <div className="p-6 bg-white shadow-xl rounded-lg transition duration-300 hover:shadow-2xl border-t-4 border-green-500">
-    <div className="text-4xl text-green-600 mb-3">{icon}</div>
-    <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
-    <p className="text-gray-600">{description}</p>
-  </div>
-);
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-8 text-gray-600 font-medium">
+                <a href="#features" class="hover:text-fatawin-green transition">Features</a>
+                <a href="#how-it-works" class="hover:text-fatawin-green transition">Process</a>
+                <a href="#testimonials" class="hover:text-fatawin-green transition">Reviews</a>
+                <a href="#faq" class="hover:text-fatawin-green transition">FAQ</a>
+            </nav>
 
-// Component for testimonials/social proof
-const Testimonial = ({ quote, name, role }) => (
-  <div className="p-6 bg-gray-50 rounded-xl shadow-lg border border-gray-200 flex flex-col items-center text-center">
-    <p className="italic text-lg text-gray-700 mb-4">"{quote}"</p>
-    <p className="font-semibold text-md text-indigo-700">{name}</p>
-    <p className="text-sm text-gray-500">{role}</p>
-  </div>
-);
-
-// Component for the primary Call To Action button
-const PrimaryCTA = ({ text, onClick }) => (
-  <button
-    onClick={onClick}
-    className="px-10 py-4 text-lg font-extrabold bg-green-600 text-white rounded-full shadow-lg transition duration-300 transform hover:scale-105 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 uppercase tracking-wider"
-  >
-    {text}
-  </button>
-);
-
-
-// ==============================================================
-// --- MAIN APPLICATION COMPONENT ---
-// ==============================================================
-
-const FatawinLandingPage = () => {
-
-  const handleCtaClick = () => {
-    console.log("CTA Clicked: Navigating to registration/download.");
-    // Add actual routing logic here
-  };
-
-  return (
-    <div className="min-h-screen bg-gray-50 font-sans antialiased">
-
-      {/* 1. HEADER / NAVIGATION BAR */}
-      <header className="sticky top-0 z-50 bg-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          {/* Logo/Branding */}
-          <div className="flex items-center space-x-2">
-            {/* Placeholder for Fatawin Logo - Must be copied/replaced */}
-            <img 
-              src="/images/fatawin_logo.png" 
-              alt="Fatawin Logo" 
-              className="h-10 w-auto" 
-            />
-            <span className="text-2xl font-extrabold text-gray-900 hidden sm:block">Fatawin</span>
-          </div>
-
-          {/* Navigation Links (Simplified for landing page focus) */}
-          <nav className="hidden md:flex space-x-8 text-gray-600 font-medium">
-            <a href="#features" className="hover:text-green-600 transition">Features</a>
-            <a href="#how-it-works" className="hover:text-green-600 transition">Process</a>
-            <a href="#testimonials" className="hover:text-green-600 transition">Reviews</a>
-            <a href="#faq" className="hover:text-green-600 transition">FAQ</a>
-          </nav>
-
-          {/* CTA in Header */}
-          <div className="hidden md:block">
-             <PrimaryCTA text="Get Started Now" onClick={handleCtaClick} />
-          </div>
-
-          {/* Mobile Menu Button (Implied interaction) */}
-          <button className="md:hidden p-2 text-gray-600 hover:text-green-600">
-            {/* Icon for Menu */}
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-          </button>
-        </div>
-      </header>
-
-      <main>
-        {/* 2. HERO SECTION */}
-        <section className="pt-16 pb-20 bg-white border-b-8 border-green-600">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
-
-            {/* Left: Text and CTA */}
-            <div className="lg:w-7/12 text-center lg:text-left">
-              <span className="inline-block bg-green-100 text-green-700 text-sm font-bold px-4 py-1 rounded-full uppercase tracking-wider mb-3">
-                The Future of Winning is Here
-              </span>
-              <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-6">
-                Unlock Unlimited Potential with <span className="text-green-600">Fatawin</span>
-              </h1>
-              <p className="text-xl text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
-                Experience the fastest, most reliable, and highest-paying platform designed to maximize your financial gains. Join thousands of satisfied winners today.
-              </p>
-              <div className="flex justify-center lg:justify-start space-x-4">
-                <PrimaryCTA text="Claim Your Free Trial" onClick={handleCtaClick} />
-                <button 
-                    onClick={handleCtaClick}
-                    className="px-8 py-4 text-lg font-semibold bg-indigo-600 text-white rounded-full shadow-md transition duration-300 hover:bg-indigo-700 transform hover:scale-105"
-                >
-                    Learn More
+            <!-- CTA in Header -->
+            <div class="hidden md:block">
+                <button onclick="handleCtaClick()" class="px-10 py-4 text-lg font-extrabold bg-fatawin-green text-white rounded-full shadow-lg transition duration-300 transform hover:scale-105 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-fatawin-green/50 uppercase tracking-wider">
+                    Get Started Now
                 </button>
-              </div>
             </div>
 
-            {/* Right: Visuals/Mockup */}
-            <div className="lg:w-5/12 mt-10 lg:mt-0">
-              {/* Placeholder for large platform screenshot - Must be copied/replaced */}
-              <img 
-                src="/images/fatawin_mockup_hero.png" 
-                alt="Fatawin Platform Interface" 
-                className="w-full max-w-lg rounded-xl shadow-2xl transform hover:rotate-1 transition duration-500 border-8 border-gray-100"
-              />
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden p-2 text-gray-600 hover:text-fatawin-green">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ============================================================== -->
+        <!-- 2. HERO SECTION -->
+        <!-- ============================================================== -->
+        <section class="pt-16 pb-20 bg-white border-b-8 border-fatawin-green">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
+
+                <!-- Left: Text and CTA -->
+                <div class="lg:w-7/12 text-center lg:text-left">
+                    <span class="inline-block bg-fatawin-green/10 text-fatawin-green text-sm font-bold px-4 py-1 rounded-full uppercase tracking-wider mb-3">
+                        The Future of Winning is Here
+                    </span>
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-6">
+                        Unlock Unlimited Potential with <span class="text-fatawin-green">Fatawin</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
+                        Experience the fastest, most reliable, and highest-paying platform designed to maximize your financial gains. Join thousands of satisfied winners today.
+                    </p>
+                    <div class="flex justify-center lg:justify-start space-x-4">
+                        <button onclick="handleCtaClick()" class="px-10 py-4 text-lg font-extrabold bg-fatawin-green text-white rounded-full shadow-lg transition duration-300 transform hover:scale-105 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-fatawin-green/50 uppercase tracking-wider">
+                            Claim Your Free Trial
+                        </button>
+                        <button onclick="handleCtaClick()" class="px-8 py-4 text-lg font-semibold bg-fatawin-indigo text-white rounded-full shadow-md transition duration-300 hover:bg-indigo-700 transform hover:scale-105">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Visuals/Mockup -->
+                <div class="lg:w-5/12 mt-10 lg:mt-0">
+                    <!-- NOTE: Replace this placeholder image path with your actual Fatawin Hero Mockup -->
+                    <img src="https://via.placeholder.com/600x450?text=Fatawin+Platform+Interface" alt="Fatawin Platform Interface" class="w-full max-w-lg rounded-xl shadow-2xl transform hover:rotate-1 transition duration-500 border-8 border-gray-100">
+                </div>
             </div>
-          </div>
         </section>
 
-        {/* 3. FEATURE / VALUE PROPOSITION SECTION */}
-        <section id="features" className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Fatawin?</h2>
-            <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-              We offer not just a platform, but a complete ecosystem built for maximum user success.
-            </p>
+        <!-- ============================================================== -->
+        <!-- 3. FEATURE / VALUE PROPOSITION SECTION -->
+        <!-- ============================================================== -->
+        <section id="features" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Why Choose Fatawin?</h2>
+                <p class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+                    We offer not just a platform, but a complete ecosystem built for maximum user success.
+                </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              <FeatureCard 
-                icon="💰" 
-                title="High Payouts" 
-                description="Access the highest return rates in the industry, ensuring your investments go further." 
-              />
-              <FeatureCard 
-                icon="🚀" 
-                title="Lightning Speed" 
-                description="Our system processes transactions and updates in real-time, keeping you ahead of the curve." 
-              />
-              <FeatureCard 
-                icon="🛡️" 
-                title="Ironclad Security" 
-                description="Your data and funds are protected by the latest encryption standards. Play with total peace of mind." 
-              />
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <!-- Feature Card 1 -->
+                    <div class="p-6 bg-white shadow-xl rounded-lg transition duration-300 hover:shadow-2xl border-t-4 border-fatawin-green">
+                        <div class="text-4xl text-fatawin-green mb-3">💰</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">High Payouts</h3>
+                        <p class="text-gray-600">Access the highest return rates in the industry, ensuring your investments go further.</p>
+                    </div>
+                    <!-- Feature Card 2 -->
+                    <div class="p-6 bg-white shadow-xl rounded-lg transition duration-300 hover:shadow-2xl border-t-4 border-fatawin-green">
+                        <div class="text-4xl text-fatawin-green mb-3">🚀</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Lightning Speed</h3>
+                        <p class="text-gray-600">Our system processes transactions and updates in real-time, keeping you ahead of the curve.</p>
+                    </div>
+                    <!-- Feature Card 3 -->
+                    <div class="p-6 bg-white shadow-xl rounded-lg transition duration-300 hover:shadow-2xl border-t-4 border-fatawin-green">
+                        <div class="text-4xl text-fatawin-green mb-3">🛡️</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Ironclad Security</h3>
+                        <p class="text-gray-600">Your data and funds are protected by the latest encryption standards. Play with total peace of mind.</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </section>
 
-        {/* 4. HOW IT WORKS / PROCESS SECTION */}
-        <section id="how-it-works" className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">Simple. Powerful. Instant.</h2>
-                <p className="text-center text-xl text-gray-600 mb-16">
+        <!-- ============================================================== -->
+        <!-- 4. HOW IT WORKS / PROCESS SECTION -->
+        <!-- ============================================================== -->
+        <section id="how-it-works" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-4">Simple. Powerful. Instant.</h2>
+                <p class="text-center text-xl text-gray-600 mb-16">
                     Get started in just three easy steps.
                 </p>
 
-                <div className="relative flex flex-col md:flex-row justify-between items-center space-y-12 md:space-y-0">
-                    {/* Timeline Indicator Line */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-green-200 hidden md:block"></div>
+                <div class="relative flex flex-col md:flex-row justify-between items-center space-y-12 md:space-y-0">
+                    <!-- Timeline Indicator Line (Visible on medium screens and up) -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-green-200 hidden md:block"></div>
 
-                    {/* Step 1 */}
-                    <div className="w-full md:w-1/3 text-center z-10 mb-8 md:mb-0">
-                        <div className="w-16 h-16 mx-auto bg-green-600 text-white rounded-full flex items-center justify-center text-3xl font-bold shadow-lg mb-4 ring-4 ring-green-200">1</div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-3">Register</h3>
-                        <p className="text-gray-600">Complete our streamlined sign-up form in minutes to gain full access to all features.</p>
+                    <!-- Step 1 -->
+                    <div class="w-full md:w-1/3 text-center z-10 mb-8 md:mb-0">
+                        <div class="w-16 h-16 mx-auto bg-fatawin-green text-white rounded-full flex items-center justify-center text-3xl font-bold shadow-lg mb-4 ring-4 ring-green-200">1</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Register</h3>
+                        <p class="text-gray-600">Complete our streamlined sign-up form in minutes to gain full access to all features.</p>
                     </div>
 
-                    {/* Step 2 */}
-                    <div className="w-full md:w-1/3 text-center z-10 mb-8 md:mb-0">
-                        <div className="w-16 h-16 mx-auto bg-green-600 text-white rounded-full flex items-center justify-center text-3xl font-bold shadow-lg mb-4 ring-4 ring-green-200">2</div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-3">Play & Invest</h3>
-                        <p className="text-gray-600">Dive into our curated selection of opportunities and start winning immediately.</p>
+                    <!-- Step 2 -->
+                    <div class="w-full md:w-1/3 text-center z-10 mb-8 md:mb-0">
+                        <div class="w-16 h-16 mx-auto bg-fatawin-green text-white rounded-full flex items-center justify-center text-3xl font-bold shadow-lg mb-4 ring-4 ring-green-200">2</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Play & Invest</h3>
+                        <p class="text-gray-600">Dive into our curated selection of opportunities and start winning immediately.</p>
                     </div>
 
-                    {/* Step 3 */}
-                    <div className="w-full md:w-1/3 text-center z-10">
-                        <div className="w-16 h-16 mx-auto bg-green-600 text-white rounded-full flex items-center justify-center text-3xl font-bold shadow-lg mb-4 ring-4 ring-green-200">3</div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-3">Cash Out</h3>
-                        <p className="text-gray-600">Withdraw your winnings instantly via multiple supported payment methods.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {/* 5. TRUST / TESTIMONIALS SECTION */}
-        <section id="testimonials" className="py-20 bg-green-50 border-t border-green-200">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="text-4xl font-bold text-gray-900 mb-12">Voices of Our Winners</h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <Testimonial 
-                        quote="I tripled my initial stake in the first week! The withdrawal process is flawless." 
-                        name="Alex T." 
-                        role="Verified Player" 
-                    />
-                    <Testimonial 
-                        quote="The platform is so intuitive, even for a beginner. Highly recommended for newcomers." 
-                        name="Sarah K." 
-                        role="Casual Investor" 
-                    />
-                    <Testimonial 
-                        quote="Best odds and fastest payouts I've ever seen. Fatawin is the industry leader." 
-                        name="Mark V." 
-                        role="Veteran Trader" 
-                    />
-                </div>
-            </div>
-        </section>
-
-        {/* 6. DETAILED FEATURES SECTION (Can be collapsed/accordion style) */}
-        <section className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">Deep Dive Features</h2>
-
-                <div className="space-y-8 max-w-4xl mx-auto">
-
-                    {/* Example Detail Block */}
-                    <div className="flex flex-col lg:flex-row items-start p-6 border-b-2 border-gray-200 hover:bg-gray-50 transition duration-200">
-                        <div className="lg:w-1/4 mb-4 lg:mb-0 lg:pr-8 text-center lg:text-left">
-                             {/* Placeholder Icon/Image for detail */}
-                            <img src="/images/feature_crypto.png" alt="Crypto" className="h-20 w-20 mx-auto lg:mx-0"/>
-                        </div>
-                        <div className="lg:w-3/4">
-                            <h3 className="text-2xl font-bold text-green-700 mb-2">Multi-Currency Support</h3>
-                            <p className="text-gray-700">Fatawin integrates seamlessly with global banking systems, allowing you to deposit and withdraw in over 15 different currencies, simplifying international transactions.</p>
-                        </div>
-                    </div>
-
-                    {/* Another Example Detail Block */}
-                    <div className="flex flex-col lg:flex-row items-start p-6 border-b-2 border-gray-200 hover:bg-gray-50 transition duration-200">
-                        <div className="lg:w-1/4 mb-4 lg:mb-0 lg:pr-8 text-center lg:text-left">
-                            {/* Placeholder Icon/Image for detail */}
-                            <img src="/images/feature_mobile.png" alt="Mobile" className="h-20 w-20 mx-auto lg:mx-0"/>
-                        </div>
-                        <div className="lg:w-3/4">
-                            <h3 className="text-2xl font-bold text-green-700 mb-2">Optimized Mobile Experience</h3>
-                            <p className="text-gray-700">Whether you're on desktop or mobile, Fatawin is designed for peak performance, ensuring a lag-free experience on any device.</p>
-                        </div>
+                    <!-- Step 3 -->
+                    <div class="w-full md:w-1/3 text-center z-10">
+                        <div class="w-16 h-16 mx-auto bg-fatawin-green text-white rounded-full flex items-center justify-center text-3xl font-bold shadow-lg mb-4 ring-4 ring-green-200">3</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Cash Out</h3>
+                        <p class="text-gray-600">Withdraw your winnings instantly via multiple supported payment methods.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        {/* 7. FINAL CTA BLOCK */}
-        <section className="py-16 bg-indigo-700 text-white">
-            <div className="max-w-5xl mx-auto text-center px-4">
-                <h2 className="text-4xl font-bold mb-4">Ready to Start Winning Big?</h2>
-                <p className="text-xl mb-8 text-indigo-200">Don't wait for opportunity—create it with Fatawin.</p>
-                <PrimaryCTA text="Join Fatawin Now!" onClick={handleCtaClick} />
-            </div>
-        </section>
+        <!-- ============================================================== -->
+        <!-- 5. TRUST / TESTIMONIALS SECTION -->
+        <!-- ============================================================== -->
+        <section id="testimonials" class="py-20 bg-green-50 border-t border-green-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold text-gray-900 mb-12">Voices of Our Winners</h2>
 
-        {/* 8. FAQ Section */}
-        <section id="faq" className="py-20 bg-gray-50">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">Frequently Asked Questions</h2>
-
-                {/* Accordion Implementation (simplified structure) */}
-                <div className="space-y-4">
-                    {[
-                        { q: "How quickly are payouts processed?", a: "Payouts are typically processed within 24 hours, depending on the verification status. Instant withdrawal options are available for premium members." },
-                        { q: "Is there a minimum deposit required?", a: "We offer flexible plans. Our entry-level package requires a minimum deposit of $10, but various micro-investment options are also available." },
-                        { q: "What happens if I have a technical issue?", a: "Our 24/7 support team is ready to assist you immediately. You can reach us via live chat or email." },
-                    ].map((item, index) => (
-                        <div key={index} className="bg-white p-5 rounded-lg shadow-md border border-gray-100 transition duration-300 hover:border-green-500">
-                            <details className="group cursor-pointer">
-                                <summary className="flex justify-between items-center font-semibold text-lg text-gray-800">
-                                    {item.q}
-                                    <span className="text-green-600 transition transform group-open:rotate-180">+</span>
-                                </summary>
-                                <p className="mt-3 pt-3 border-t border-gray-100 text-gray-600">{item.a}</p>
-                            </details>
-                        </div>
-                    ))}
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-200 flex flex-col items-center text-center">
+                        <p class="italic text-lg text-gray-700 mb-4">"I tripled my initial stake in the first week! The withdrawal process is flawless."</p>
+                        <p class="font-semibold text-md text-fatawin-indigo">Alex T.</p>
+                        <p class="text-sm text-gray-500">Verified Player</p>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-200 flex flex-col items-center text-center">
+                        <p class="italic text-lg text-gray-700 mb-4">"The platform is so intuitive, even for a beginner. Highly recommended for newcomers."</p>
+                        <p class="font-semibold text-md text-fatawin-indigo">Sarah K.</p>
+                        <p class="text-sm text-gray-500">Casual Investor</p>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-200 flex flex-col items-center text-center">
+                        <p class="italic text-lg text-gray-700 mb-4">"Best odds and fastest payouts I've ever seen. Fatawin is the industry leader."</p>
+                        <p class="font-semibold text-md text-fatawin-indigo">Mark V.</p>
+                        <p class="text-sm text-gray-500">Veteran Trader</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-      </main>
+        <!-- ============================================================== -->
+        <!-- 6. DETAILED FEATURES SECTION -->
+        <!-- ============================================================== -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-16">Deep Dive Features</h2>
 
-      {/* 9. FOOTER */}
-      <footer className="bg-gray-900 text-white py-12 mt-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 border-b border-gray-700 pb-8 mb-8">
+                <div class="space-y-8 max-w-4xl mx-auto">
+                    <!-- Detail Block 1 -->
+                    <div class="flex flex-col lg:flex-row items-start p-6 border-b-2 border-gray-200 hover:bg-gray-50 transition duration-200">
+                        <div class="lg:w-1/4 mb-4 lg:mb-0 lg:pr-8 text-center lg:text-left">
+                            <!-- NOTE: Placeholder for feature_crypto.png -->
+                            <img src="https://via.placeholder.com/80x80?text=Crypto" alt="Crypto" class="h-20 w-20 mx-auto lg:mx-0">
+                        </div>
+                        <div class="lg:w-3/4">
+                            <h3 class="text-2xl font-bold text-fatawin-green mb-2">Multi-Currency Support</h3>
+                            <p class="text-gray-700">Fatawin integrates seamlessly with global banking systems, allowing you to deposit and withdraw in over 15 different currencies, simplifying international transactions.</p>
+                        </div>
+                    </div>
 
-            {/* Brand Info */}
-            <div className="col-span-2 md:col-span-2">
-              <div className="text-3xl font-extrabold text-green-400 mb-3">Fatawin</div>
-              <p className="text-gray-400 max-w-xs">Maximizing your gains through innovative financial platforms.</p>
-              <div className="flex space-x-4 mt-4">
-                {/* Social Media Icons - Placeholders */}
-                <div className="text-gray-400 hover:text-white">FB</div>
-                <div className="text-gray-400 hover:text-white">TW</div>
-                <div className="text-gray-400 hover:text-white">LI</div>
-              </div>
+                    <!-- Detail Block 2 -->
+                    <div class="flex flex-col lg:flex-row items-start p-6 border-b-2 border-gray-200 hover:bg-gray-50 transition duration-200">
+                        <div class="lg:w-1/4 mb-4 lg:mb-0 lg:pr-8 text-center lg:text-left">
+                             <!-- NOTE: Placeholder for feature_mobile.png -->
+                            <img src="https://via.placeholder.com/80x80?text=Mobile" alt="Mobile" class="h-20 w-20 mx-auto lg:mx-0">
+                        </div>
+                        <div class="lg:w-3/4">
+                            <h3 class="text-2xl font-bold text-fatawin-green mb-2">Optimized Mobile Experience</h3>
+                            <p class="text-gray-700">Whether you're on desktop or mobile, Fatawin is designed for peak performance, ensuring a lag-free experience on any device.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 7. FINAL CTA BLOCK -->
+        <!-- ============================================================== -->
+        <section class="py-16 bg-indigo-700 text-white">
+            <div class="max-w-5xl mx-auto text-center px-4">
+                <h2 class="text-4xl font-bold mb-4">Ready to Start Winning Big?</h2>
+                <p class="text-xl mb-8 text-indigo-200">Don't wait for opportunity—create it with Fatawin.</p>
+                <button onclick="handleCtaClick()" class="px-10 py-4 text-lg font-extrabold bg-fatawin-green text-white rounded-full shadow-lg transition duration-300 transform hover:scale-105 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-fatawin-green/50 uppercase tracking-wider">
+                    Join Fatawin Now!
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 8. FAQ Section -->
+        <!-- ============================================================== -->
+        <section id="faq" class="py-20 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Frequently Asked Questions</h2>
+
+                <div class="space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100 transition duration-300 hover:border-fatawin-green">
+                        <details class="group cursor-pointer">
+                            <summary class="flex justify-between items-center font-semibold text-lg text-gray-800">
+                                How quickly are payouts processed?
+                                <span class="text-fatawin-green transition transform group-open:rotate-180">+</span>
+                            </summary>
+                            <p class="mt-3 pt-3 border-t border-gray-100 text-gray-600">Payouts are typically processed within 24 hours, depending on the verification status. Instant withdrawal options are available for premium members.</p>
+                        </details>
+                    </div>
+                    <!-- FAQ Item 2 -->
+                    <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100 transition duration-300 hover:border-fatawin-green">
+                        <details class="group cursor-pointer">
+                            <summary class="flex justify-between items-center font-semibold text-lg text-gray-800">
+                                Is there a minimum deposit required?
+                                <span class="text-fatawin-green transition transform group-open:rotate-180">+</span>
+                            </summary>
+                            <p class="mt-3 pt-3 border-t border-gray-100 text-gray-600">We offer flexible plans. Our entry-level package requires a minimum deposit of $10, but various micro-investment options are also available.</p>
+                        </details>
+                    </div>
+                    <!-- FAQ Item 3 -->
+                    <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100 transition duration-300 hover:border-fatawin-green">
+                        <details class="group cursor-pointer">
+                            <summary class="flex justify-between items-center font-semibold text-lg text-gray-800">
+                                What happens if I have a technical issue?
+                                <span class="text-fatawin-green transition transform group-open:rotate-180">+</span>
+                            </summary>
+                            <p class="mt-3 pt-3 border-t border-gray-100 text-gray-600">Our 24/7 support team is ready to assist you immediately. You can reach us via live chat or email.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================== -->
+    <!-- 9. FOOTER -->
+    <!-- ============================================================== -->
+    <footer class="bg-gray-900 text-white py-12 mt-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 border-b border-gray-700 pb-8 mb-8">
+
+                <!-- Brand Info -->
+                <div class="col-span-2 md:col-span-2">
+                    <div class="text-3xl font-extrabold text-fatawin-green mb-3">Fatawin</div>
+                    <p class="text-gray-400 max-w-xs">Maximizing your gains through innovative financial platforms.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <!-- Social Media Icons - Placeholders -->
+                        <div class="text-gray-400 hover:text-white">FB</div>
+                        <div class="text-gray-400 hover:text-white">TW</div>
+                        <div class="text-gray-400 hover:text-white">LI</div>
+                    </div>
+                </div>
+
+                <!-- Links 1 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-fatawin-green">Platform</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Features</a></li>
+                        <li><a href="#" class="hover:text-white transition">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition">Case Studies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links 2 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-fatawin-green">Support</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-fatawin-green">Legal</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Disclaimer</a></li>
+                    </ul>
+                </div>
             </div>
 
-            {/* Links 1 */}
-            <div>
-              <h4 className="text-lg font-bold mb-4 text-green-400">Platform</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white transition">Features</a></li>
-                <li><a href="#" className="hover:text-white transition">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition">Case Studies</a></li>
-              </ul>
+            <!-- Copyright -->
+            <div class="text-center pt-4 text-gray-500 text-sm">
+                &copy; 2024 Fatawin. All Rights Reserved. | Designed with DIG-ONE.
             </div>
-
-            {/* Links 2 */}
-            <div>
-              <h4 className="text-lg font-bold mb-4 text-green-400">Support</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white transition">Contact Us</a></li>
-                <li><a href="#" className="hover:text-white transition">Help Center</a></li>
-                <li><a href="#" className="hover:text-white transition">FAQ</a></li>
-              </ul>
-            </div>
-
-            {/* Legal */}
-            <div>
-              <h4 className="text-lg font-bold mb-4 text-green-400">Legal</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition">Disclaimer</a></li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div className="text-center pt-4 text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} Fatawin. All Rights Reserved. | Designed with DIG-ONE.
-          </div>
         </div>
-      </footer>
+    </footer>
 
-    </div>
-  );
-};
-
-export default FatawinLandingPage;
+    <!-- JavaScript for Interactions -->
+    <script>
+        // Functionality mirroring the React component's CTA
+        function handleCtaClick() {
+            alert("Action Triggered: Redirecting to Sign-up/Download page (Implement your actual routing here).");
+        }
+    </script>
+</body>
+</html>
